@@ -95,7 +95,7 @@ export default function Benefits() {
       <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-blue-200/10 blur-3xl"></div>
       <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-indigo-200/10 blur-3xl"></div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-600">
             <svg

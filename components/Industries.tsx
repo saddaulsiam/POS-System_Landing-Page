@@ -48,7 +48,7 @@ export default function Industries() {
       <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"></div>
       <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl"></div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-4 inline-block">
             <span className="rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg">

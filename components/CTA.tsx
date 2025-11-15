@@ -1,7 +1,7 @@
 export default function CTA() {
   return (
     <section id="contact" className="bg-gray-50 py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-3xl bg-linear-to-br from-blue-600 to-indigo-700 shadow-2xl">
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-2">
             {/* Left Side - Content */}
