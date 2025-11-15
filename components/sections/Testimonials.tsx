@@ -1,4 +1,5 @@
 import TestimonialCarousel from "../client/TestimonialCarousel";
+import AnimatedSection from "../ui/AnimatedSection";
 
 export default function Testimonials() {
   const testimonials = [
@@ -36,7 +37,6 @@ export default function Testimonials() {
       {/* Background Decoration */}
       <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-blue-100/20 blur-3xl"></div>
       <div className="absolute right-1/4 bottom-0 h-96 w-96 rounded-full bg-indigo-100/20 blur-3xl"></div>
-
       <div className="max-w-8xl relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-4 inline-block">
@@ -55,8 +55,10 @@ export default function Testimonials() {
         {/* Desktop View */}
         <div className="hidden grid-cols-1 gap-8 md:grid md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <div
+            <AnimatedSection
+              delay={index * 100}
               key={index}
+              animation="fade-up"
               className="group relative rounded-2xl border border-gray-100 bg-white p-8 shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-blue-200 hover:shadow-2xl"
             >
               {/* Quote Icon */}
@@ -100,14 +102,13 @@ export default function Testimonials() {
                   </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
 
-        {/* Mobile Carousel */}
+        {/* Mobile View */}
         <TestimonialCarousel testimonials={testimonials} />
 
-        {/* Trust badges */}
         <div className="mt-20 rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <div className="text-center">
