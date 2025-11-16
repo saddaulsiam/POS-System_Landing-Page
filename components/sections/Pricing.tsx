@@ -1,18 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+
 import PricingToggle from "../client/PricingToggle";
 import AnimatedSection from "../ui/AnimatedSection";
+import Modal from "../ui/Modal";
+
+type ModalType = "trial" | "contact" | null;
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [modal, setModal] = useState<ModalType>(null);
+  // Form states
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+  const contactEmailRef = useRef<HTMLInputElement>(null);
 
   const plans = [
     {
       name: "Starter",
-      price: isAnnual ? 59 : 69,
+      price: isAnnual ? 29 : 39,
       period: isAnnual ? "/month (billed annually)" : "/month",
-      description: "Perfect for small businesses just getting started",
+      description: "All the essentials for small shops and new businesses.",
       features: [
         "Up to 3 users",
         "Unlimited products",
@@ -26,8 +41,8 @@ export default function Pricing() {
       popular: false,
     },
     {
-      name: "Professional",
-      price: isAnnual ? 119 : 139,
+      name: "Standard",
+      price: isAnnual ? 59 : 79,
       period: isAnnual ? "/month (billed annually)" : "/month",
       description: "For growing businesses that need more power",
       features: [
@@ -63,6 +78,42 @@ export default function Pricing() {
       popular: false,
     },
   ];
+
+  // Email validation
+  function validateEmail(email: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // Handle contact form submit
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    if (!contactForm.name || !contactForm.email || !contactForm.message) {
+      setError("Please fill in all fields.");
+      return;
+    }
+    if (!validateEmail(contactForm.email)) {
+      setError("Please enter a valid email address.");
+      contactEmailRef.current?.focus();
+      return;
+    }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSuccess(true);
+    }, 1200);
+  };
+
+  // Reset modal state
+  const closeModal = () => {
+    setModal(null);
+    setTimeout(() => {
+      setContactForm({ name: "", email: "", message: "" });
+      setLoading(false);
+      setSuccess(false);
+      setError("");
+    }, 300);
+  };
 
   return (
     <section id="pricing" className="relative overflow-hidden bg-white py-20">
@@ -159,20 +210,153 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a
-                href="#contact"
-                className={`block w-full rounded-xl px-6 py-3.5 text-center font-bold transition-all duration-300 ${
-                  plan.popular
-                    ? "bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:scale-105 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl"
-                    : "bg-gray-100 text-gray-900 hover:scale-105 hover:bg-gray-200"
-                }`}
-              >
-                {plan.cta}
-              </a>
+              {/* Only Starter plan offers free trial, but now it scrolls to #contact */}
+              {plan.name === "Starter" ? (
+                <a
+                  href="#contact"
+                  className={`block w-full rounded-xl px-6 py-3.5 text-center font-bold transition-all duration-300 ${
+                    plan.popular
+                      ? "bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:scale-105 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl"
+                      : "bg-gray-100 text-gray-900 hover:scale-105 hover:bg-gray-200"
+                  }`}
+                >
+                  Start Free Trial
+                </a>
+              ) : plan.cta === "Contact Sales" ? (
+                <button
+                  type="button"
+                  onClick={() => setModal("contact")}
+                  className={`block w-full rounded-xl px-6 py-3.5 text-center font-bold transition-all duration-300 ${
+                    plan.popular
+                      ? "bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:scale-105 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl"
+                      : "bg-gray-100 text-gray-900 hover:scale-105 hover:bg-gray-200"
+                  }`}
+                >
+                  Contact Sales
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  // Replace with your purchase logic or link
+                  className={`block w-full rounded-xl px-6 py-3.5 text-center font-bold transition-all duration-300 ${
+                    plan.popular
+                      ? "bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:scale-105 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl"
+                      : "bg-gray-100 text-gray-900 hover:scale-105 hover:bg-gray-200"
+                  }`}
+                  disabled
+                >
+                  Purchase
+                </button>
+              )}
             </AnimatedSection>
           ))}
         </div>
       </div>
+      {/* Secure checkout note */}
+      <div className="mt-12 flex flex-col items-center">
+        <div className="flex items-center gap-2 text-xs text-gray-500">
+          <svg
+            className="h-4 w-4 text-green-500"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 12l2 2 4-4"
+            />
+          </svg>
+          100% Secure Checkout — SSL Encrypted
+        </div>
+      </div>
+
+      {/* Contact Modal */}
+      <Modal
+        open={modal === "contact"}
+        onClose={closeModal}
+        title="Contact Sales"
+      >
+        {success ? (
+          <div className="flex flex-col items-center justify-center py-8">
+            <svg
+              className="mb-4 h-12 w-12 text-green-500"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <div className="mb-2 text-lg font-semibold text-green-700">
+              Message Sent!
+            </div>
+            <div className="mb-4 text-gray-600">
+              Our team will contact you soon.
+            </div>
+            <button
+              onClick={closeModal}
+              className="rounded bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          <form className="space-y-4" onSubmit={handleContactSubmit}>
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="w-full rounded border px-3 py-2"
+              value={contactForm.name}
+              onChange={(e) =>
+                setContactForm((f) => ({ ...f, name: e.target.value }))
+              }
+              disabled={loading}
+            />
+            <input
+              type="email"
+              placeholder="Email Address"
+              className="w-full rounded border px-3 py-2"
+              value={contactForm.email}
+              onChange={(e) =>
+                setContactForm((f) => ({ ...f, email: e.target.value }))
+              }
+              ref={contactEmailRef}
+              disabled={loading}
+            />
+            <textarea
+              placeholder="Your Message"
+              className="w-full rounded border px-3 py-2"
+              rows={3}
+              value={contactForm.message}
+              onChange={(e) =>
+                setContactForm((f) => ({ ...f, message: e.target.value }))
+              }
+              disabled={loading}
+            ></textarea>
+            {error && <div className="text-sm text-red-600">{error}</div>}
+            <button
+              type="submit"
+              className="w-full rounded bg-blue-600 py-2 font-bold text-white hover:bg-blue-700 disabled:opacity-60"
+              disabled={loading}
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+        )}
+      </Modal>
     </section>
   );
 }
