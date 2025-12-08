@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# executables
+*.exe
+
 .vercel
 
 # Windows executable files

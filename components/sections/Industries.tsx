@@ -5,8 +5,7 @@ export default function Industries() {
     {
       name: "Retail Stores",
       icon: "🏪",
-      description:
-        "Perfect for grocery stores, convenience stores, and retail shops",
+      description: "Perfect for grocery stores, and retail shops",
       features: ["Barcode scanning", "Inventory tracking", "Loyalty programs"],
     },
     {

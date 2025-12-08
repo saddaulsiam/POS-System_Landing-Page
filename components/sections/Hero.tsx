@@ -2,10 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import VideoModal from "../client/VideoModal";
 import AnimatedSection from "../ui/AnimatedSection";
+import { getLatestRelease } from "@/app/actions/getLatestRelease";
 
-export default function Hero() {
+export default async function Hero() {
+  const { downloadUrl } = await getLatestRelease();
   return (
-    <section className="relative bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
+    <section
+      id="home"
+      className="relative bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white"
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 h-72 w-72 animate-pulse rounded-full bg-blue-400 blur-3xl"></div>
@@ -40,13 +45,24 @@ export default function Hero() {
 
             <div className="mb-12 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
               <a
-                href="#pricing"
-                className="group hover:shadow-3xl rounded-xl bg-white px-8 py-4 text-lg font-semibold text-blue-700 shadow-2xl transition-all hover:scale-105 hover:bg-blue-50"
+                href={downloadUrl}
+                className="group hover:shadow-3xl flex items-center justify-center rounded-xl bg-white px-8 py-4 text-lg font-semibold text-blue-700 shadow-2xl transition-all hover:scale-105 hover:bg-blue-50"
+                download
               >
-                Start Free Trial
-                <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">
-                  →
-                </span>
+                Download Now
+                <svg
+                  className="ml-1.5 h-5 w-5 transition-transform group-hover:translate-y-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
               </a>
               <VideoModal />
             </div>
@@ -64,7 +80,7 @@ export default function Hero() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="font-medium">No credit card</span>
+                <span className="font-medium">Free Download</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg
@@ -78,7 +94,7 @@ export default function Hero() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="font-medium">60-day trial</span>
+                <span className="font-medium">Windows Ready</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg
@@ -92,7 +108,7 @@ export default function Hero() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="font-medium">Cancel anytime</span>
+                <span className="font-medium">Easy Setup</span>
               </div>
             </div>
           </AnimatedSection>
