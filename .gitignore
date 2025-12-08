@@ -44,6 +44,3 @@ next-env.d.ts
 *.exe
 
 .vercel
-
-# Windows executable files
-*.exe
