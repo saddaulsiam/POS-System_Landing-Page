@@ -97,7 +97,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="#"
+                  href="/privacy"
                   className="inline-block transition-colors duration-300 hover:pl-2 hover:text-blue-400"
                 >
                   Privacy Policy
@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/terms"
                   className="inline-block transition-colors duration-300 hover:pl-2 hover:text-blue-400"
                 >
                   Terms of Service
