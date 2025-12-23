@@ -10,94 +10,34 @@ export default function Pricing() {
 
   const plans = [
     {
-      name: "Starter",
-      price: isAnnual ? 29 : 39,
-      period: isAnnual ? "/month (billed annually)" : "/month",
-      description: "Perfect for new businesses.",
-      features: [
-        { name: "User Logins: 3 Cashier, 1 Manager", active: true },
-        { name: "Products: Up to 300", active: true },
-        { name: "Manage Inventory", active: true },
-        { name: "Manage Customer Profiles", active: true },
-        { name: "Employee Management", active: false },
-        { name: "Product Variants", active: false },
-        { name: "Sales Reports: Basic", active: true },
-        { name: "Print Receipts", active: true },
-        { name: "Custom Receipts", active: true },
-        { name: "Parked Sales", active: false },
-        { name: "Loyalty Programs", active: false },
-        { name: "Multi-Location (outlet) Management", active: false },
-        {
-          name: "Custom Integrations & Development Service",
-          active: false,
-        },
-        { name: "Dedicated Account Manager", active: false },
-        { name: "Training: Online", active: true },
-        { name: "Support Channel: Email", active: true },
-        { name: "24/7 Phone Support", active: true },
-      ],
-      cta: "Start 3 Months Free Trial",
-      popular: false,
-    },
-    {
-      name: "Standard",
+      name: "Pro Plan",
       price: isAnnual ? 59 : 79,
-      period: isAnnual ? "/month (billed annually)" : "/month",
-      description: "For growing businesses that need more power",
+      period: isAnnual ? "/month (billed $708 annually)" : "/month",
+      savings: isAnnual ? "Save $240/year" : null,
+      description: "Everything you need to run your business",
       features: [
-        { name: "User Logins: 10 Cashier, 3 Manager", active: true },
-        { name: "Unlimited Products", active: true },
-        { name: "Manage Inventory", active: true },
-        { name: "Manage Customer Profiles", active: true },
+        { name: "Unlimited Products & Inventory", active: true },
+        { name: "Real-time Stock Tracking", active: true },
+        { name: "Cashier & Manager Accounts", active: true },
+        { name: "Secure Role-based Access", active: true },
+        { name: "Advanced Sales Reports", active: true },
+        { name: "Daily, Weekly & Monthly Insights", active: true },
+        { name: "Customer Loyalty Program", active: true },
+        { name: "Built-in Points System", active: true },
+        { name: "Receipt Customization", active: true },
+        { name: "Add Your Logo & Footer", active: true },
         { name: "Employee Management", active: true },
         { name: "Product Variants", active: true },
-        { name: "Sales Reports: Advanced", active: true },
-        { name: "Print Receipts", active: true },
-        { name: "Custom Receipts", active: true },
         { name: "Parked Sales", active: true },
-        { name: "Loyalty Programs", active: true },
-        { name: "Multi-Location (outlet) Management", active: false },
-        {
-          name: "Custom Integrations & Development Service",
-          active: false,
-        },
-        { name: "Dedicated Account Manager", active: false },
-        { name: "Training: Online", active: true },
-        { name: "Support Channel: Priority Email & Chat", active: true },
-        { name: "24/7 Phone Support", active: true },
+        { name: "Supplier Management", active: true },
+        { name: "Purchase Orders", active: true },
+        { name: "Cash Drawer Management", active: true },
+        { name: "Audit Logs", active: true },
+        { name: "24/7 Priority Support", active: true },
+        { name: "Phone, Chat & Email", active: true },
       ],
-      cta: "Purchase",
+      cta: "Download & Get 7-Day Free Trial",
       popular: true,
-    },
-    {
-      name: "Enterprise",
-      price: isAnnual ? 99 : 129,
-      period: isAnnual ? "/month (billed annually)" : "/month",
-      description: "For large businesses with custom needs",
-      features: [
-        { name: "User Logins: 10 Cashier, 3 Manager", active: true },
-        { name: "Unlimited Products", active: true },
-        { name: "Manage Inventory", active: true },
-        { name: "Manage Customer Profiles", active: true },
-        { name: "Employee Management", active: true },
-        { name: "Product Variants", active: true },
-        { name: "Sales Reports: Advanced", active: true },
-        { name: "Print Receipts", active: true },
-        { name: "Custom Receipts", active: true },
-        { name: "Parked Sales", active: true },
-        { name: "Loyalty Programs", active: true },
-        { name: "Multi-Location (outlet) Management", active: true },
-        {
-          name: "Custom Integrations & Development Service",
-          active: true,
-        },
-        { name: "Dedicated Account Manager", active: true },
-        { name: "Personalized Onboarding & Training", active: true },
-        { name: "Dedicated Enterprise Support Queue", active: true },
-        { name: "24/7 Phone Support", active: true },
-      ],
-      cta: "Purchase",
-      popular: false,
     },
   ];
 
@@ -119,8 +59,8 @@ export default function Pricing() {
             Simple, Transparent Pricing
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
-            Choose the plan that&apos;s right for your business. All plans
-            include a 60-day free trial.
+            One powerful plan with everything included. Start with a 10-day free
+            trial. Purchase securely within the app.
           </p>
 
           <div className="mt-5 mb-8 flex items-center justify-center space-x-10 text-sm text-gray-500">
@@ -131,7 +71,7 @@ export default function Pricing() {
 
             <p className="flex items-center justify-center gap-2">
               <ShieldCheck className="size-4" />
-              30-day money-back guarantee
+              7-day money-back guarantee
             </p>
 
             <p className="flex items-center justify-center gap-2">
@@ -144,19 +84,15 @@ export default function Pricing() {
           <PricingToggle onToggle={setIsAnnual} />
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="mx-auto max-w-2xl">
           {plans.map((plan, index) => (
             <AnimatedSection
               key={index}
               animation="fade-up"
               delay={index * 100}
-              className={`group relative rounded-2xl bg-white p-8 transition-all duration-300 ${
-                plan.popular
-                  ? "border-2 border-blue-500 shadow-xl shadow-blue-100/50 hover:-translate-y-2 hover:shadow-2xl"
-                  : "border border-gray-200 shadow-md hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
-              }`}
+              className="group relative rounded-2xl border-2 border-blue-500 bg-white p-10 shadow-xl shadow-blue-100/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
-              {plan.popular && (
+              {isAnnual && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <span className="inline-flex items-center gap-1 rounded-full bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-2 text-sm font-bold text-white shadow-lg">
                     <svg
@@ -177,71 +113,45 @@ export default function Pricing() {
                 </h3>
                 <p className="mb-4 text-gray-600">{plan.description}</p>
                 <div className="mb-2">
-                  {typeof plan.price === "number" ? (
-                    <>
-                      <span className="text-5xl font-bold text-gray-900">
-                        ${plan.price}
-                      </span>
-                      <span className="text-gray-600">{plan.period}</span>
-                    </>
-                  ) : (
-                    <span className="text-4xl font-bold text-gray-900">
-                      {plan.price}
-                    </span>
-                  )}
+                  <span className="text-5xl font-bold text-gray-900">
+                    ${plan.price}
+                  </span>
+                  <span className="text-gray-600">{plan.period}</span>
                 </div>
+                {plan.savings && (
+                  <div className="inline-block rounded-full bg-green-100 px-4 py-1 text-sm font-semibold text-green-700">
+                    {plan.savings}
+                  </div>
+                )}
               </div>
 
-              <ul className="mb-8 space-y-4">
+              <ul className="mb-8 grid grid-cols-1 gap-3 md:grid-cols-2">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <div
-                      className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${feature.active ? "bg-green-100" : "bg-red-100"}`}
-                    >
-                      {feature.active ? (
-                        <svg
-                          className="h-4 w-4 text-green-600"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      ) : (
-                        <svg
-                          className="h-4 w-4 text-red-500"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          strokeWidth={2}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      )}
+                    <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100">
+                      <svg
+                        className="h-4 w-4 text-green-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
                     </div>
                     <span className="text-gray-700">{feature.name}</span>
                   </li>
                 ))}
               </ul>
 
-              <button
-                type="button"
-                // Replace with your purchase logic or link
-                className={`block w-full cursor-pointer rounded-xl px-6 py-3.5 text-center font-bold transition-all duration-300 ${
-                  plan.popular
-                    ? "bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:scale-105 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl"
-                    : "bg-gray-100 text-gray-900 hover:scale-105 hover:bg-gray-200"
-                }`}
+              <a
+                href="#download"
+                className="block w-full cursor-pointer rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-4 text-center text-lg font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl"
               >
                 {plan.cta}
-              </button>
+              </a>
             </AnimatedSection>
           ))}
         </div>
