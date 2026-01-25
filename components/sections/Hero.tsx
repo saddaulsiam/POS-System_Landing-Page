@@ -132,7 +132,7 @@ export default async function Hero() {
 
               {/* Stats badges */}
               <Link
-                href="https://pos-system-grocery.vercel.app"
+                href="https://smartpossystem.vercel.app"
                 target="_blank"
                 className="absolute -bottom-4 -left-4 cursor-pointer rounded-xl bg-white px-5 py-3 shadow-xl outline-none"
               >
