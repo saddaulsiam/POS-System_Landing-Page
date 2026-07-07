@@ -59,34 +59,30 @@ export default function FAQList() {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className={`group overflow-hidden rounded-xl border bg-white transition-all duration-300 ${
-              openIndex === index
-                ? "-translate-y-1 border-blue-500 shadow-lg shadow-blue-100/50"
-                : "border-gray-100 shadow-xs hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
-            }`}
+            className={`group overflow-hidden rounded-xl border bg-white transition-all duration-300 ${openIndex === index
+              ? "-translate-y-1 border-blue-500 shadow-lg shadow-blue-100/50"
+              : "border-gray-100 shadow-xs hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
+              }`}
           >
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              className={`flex w-full items-start justify-between gap-4 px-6 py-6 text-left transition-all duration-300 sm:px-8 ${
-                openIndex === index
-                  ? "bg-linear-to-br from-blue-50/80 via-sky-50/60 to-indigo-50/40"
-                  : "hover:bg-linear-to-br hover:from-blue-50/80 hover:via-sky-50/60 hover:to-indigo-50/40"
-              }`}
+              className={`flex w-full items-start justify-between gap-4 px-6 py-6 text-left transition-all duration-300 sm:px-8 ${openIndex === index
+                ? "bg-linear-to-br from-blue-50/80 via-sky-50/60 to-indigo-50/40"
+                : "hover:bg-linear-to-br hover:from-blue-50/80 hover:via-sky-50/60 hover:to-indigo-50/40"
+                }`}
             >
               <div className="flex flex-1 items-start gap-4">
                 <div
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${
-                    openIndex === index
-                      ? "scale-110 bg-blue-600 shadow-md"
-                      : "bg-blue-100 group-hover:scale-110 group-hover:bg-blue-600 group-hover:shadow-md"
-                  }`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${openIndex === index
+                    ? "scale-110 bg-blue-600 shadow-md"
+                    : "bg-blue-100 group-hover:scale-110 group-hover:bg-blue-600 group-hover:shadow-md"
+                    }`}
                 >
                   <svg
-                    className={`h-5 w-5 transition-colors duration-300 ${
-                      openIndex === index
-                        ? "text-white"
-                        : "text-blue-600 group-hover:text-white"
-                    }`}
+                    className={`h-5 w-5 transition-colors duration-300 ${openIndex === index
+                      ? "text-white"
+                      : "text-blue-600 group-hover:text-white"
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -100,28 +96,25 @@ export default function FAQList() {
                   </svg>
                 </div>
                 <span
-                  className={`pt-1 text-lg font-semibold transition-colors duration-300 ${
-                    openIndex === index
-                      ? "text-blue-600"
-                      : "text-gray-900 group-hover:text-blue-600"
-                  }`}
+                  className={`pt-1 text-lg font-semibold transition-colors duration-300 ${openIndex === index
+                    ? "text-blue-600"
+                    : "text-gray-900 group-hover:text-blue-600"
+                    }`}
                 >
                   {faq.question}
                 </span>
               </div>
               <div
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${
-                  openIndex === index
-                    ? "scale-110 bg-blue-100"
-                    : "bg-gray-100 group-hover:scale-110 group-hover:bg-blue-100"
-                }`}
+                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${openIndex === index
+                  ? "scale-110 bg-blue-100"
+                  : "bg-gray-100 group-hover:scale-110 group-hover:bg-blue-100"
+                  }`}
               >
                 <svg
-                  className={`h-5 w-5 transition-all duration-300 ${
-                    openIndex === index
-                      ? "rotate-180 text-blue-600"
-                      : "text-gray-600 group-hover:text-blue-600"
-                  }`}
+                  className={`h-5 w-5 transition-all duration-300 ${openIndex === index
+                    ? "rotate-180 text-blue-600"
+                    : "text-gray-600 group-hover:text-blue-600"
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -136,11 +129,10 @@ export default function FAQList() {
               </div>
             </button>
             <div
-              className={`overflow-hidden transition-all duration-300 ${
-                openIndex === index
-                  ? "max-h-96 opacity-100"
-                  : "max-h-0 opacity-0"
-              }`}
+              className={`overflow-hidden transition-all duration-300 ${openIndex === index
+                ? "max-h-96 opacity-100"
+                : "max-h-0 opacity-0"
+                }`}
             >
               <div className="px-6 pb-6 pl-20 sm:px-8">
                 <div className="border-l-4 border-blue-200 py-2 pl-6">
